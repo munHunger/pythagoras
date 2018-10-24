@@ -23,3 +23,8 @@ The application will add things to the database upon starting.
 
 Once started the application is reachable on http://localhost/exam-1.0
 Or on port 8080 if launched outside of docker without any port parameters
+
+# To be fixed
+
+Invert the relation so that the building is queried and returned as root instead of floor.
+Current implementation sends a way to large json in response with a lot of repetition
