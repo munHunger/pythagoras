@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        td,
+        th {
+            border: 1px solid black;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="result"></table>
+</body>
+<script>
+    $(document).ready(function () {
+        $.get("api/floor/list", function (data) {
+            var resultHTML = $('<div />');
+            var sum = 0;
+            resultHTML.append("<tr><th>Namn</th><th>Area</th><th>Byggnadsnamn</th></tr>");
+            for (var i = 0; i < data.length; i++) {
+                sum += data[i].area;
+                resultHTML.append("<tr><td>" + data[i].name + "</td><td>" + data[i].area + "</td><td>" + data[i].parent.name + "</td></tr>");
+            }
+            resultHTML.append("<tr><td></td><td><b>" + sum + "</b></td><td></td></tr>");
+            $('#result').html(resultHTML);
+        });
+    });
+</script>
+
+</html>

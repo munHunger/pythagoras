@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: exam
+
+  pythagoras:
+    build: ./
+    ports:
+      - 80:8080
+    links:
+      - mysql:mysql
+    environment:
+      DB_URL: mysql://mysql:3306/exam?allowPublicKeyRetrieval=true&useSSL=false
